@@ -19,10 +19,8 @@ function searchMovie() {
             <p class="text-lg text-white bg-[#E50914] p-1 rounded-md flex justify-center items-center">${data.Ratings[0].Value}</p>
           </div>
           <div class="grid gap-4 mt-6">
-            <p>Year: ${data.Year}</p>
             <p>Released: ${data.Released}</p>
             <p>Length: ${data.Runtime}</p>
-            <p>Awards: ${data.Awards}</p>
             <p>Director: ${data.Director}</p>
             <p>Actors: ${data.Actors}</p>
             <p>Plot: ${data.Plot}</p>
@@ -52,7 +50,6 @@ function saveMovie() {
     localStorage.setItem("watchList", JSON.stringify(watchList));
     console.log("Movie saved");
     displayWatchList(watchList);
-
   }
 }
 
@@ -69,12 +66,11 @@ function displayWatchList(watchList) {
       watchListDiv.innerHTML += `
         <div class="bg-gray-200 p-2 rounded-md my-2 flex gap-4">
             <img src="${movieData.Poster}" id="movieposter" class="rounded-md object-fill h-40">
-            <div class="grid gap-2">
+            <div class="grid gap-2 w-full">
               <div class="flex justify-between">
                 <h3 class="text-2xl font-medium">${movieData.Title}</h3>
                 <p class="text-sm text-white bg-[#E50914] p-1 rounded-md flex justify-center items-center">${movieData.Ratings[0].Value}</p>
               </div>
-              <p>Year: ${movieData.Year}</p>
               <p>Actors: ${movieData.Actors}</p>
               <p>Duration: ${movieData.Runtime}</p>
               <p>Plot: ${movieData.Plot}</p>

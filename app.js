@@ -5,17 +5,21 @@ function searchMovie() {
     .then(data => {
       if (data.Response === "False") {
         document.getElementById("movieInfo").innerHTML = `
-          <div class="grid bg-gray-200 rounded-md py-10 px-4"><p>not found</p></div>
+          <div class="grid flex bg-gray-200 rounded-md py-10 px-4 flex justify-center"><h2 class="font-medium text-4xl">Your research doesn't match any movie. Try again !</h2><img class="flex justify-center items-center" src="https://ouch-cdn2.icons8.com/7VvFyC515Y1E1JaSOZBcvEq2iUjaKaojSlBhtCHHmRA/rs:fit:608:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzU2/LzdjYjEyM2Q1LWQz/NjItNDI3NS1iYjk5/LWNiMDE2Zjk3ODQ3/ZS5zdmc.png"></div>
         `;
       } else {
       document.getElementById("movieInfo").innerHTML = `
-      <div class="grid bg-gray-200 rounded-md py-10 px-4">
-        <h2>${data.Title}</h2>
-        <p>Year: ${data.Year}</p>
-        <img src="${data.Poster}" id="movieposter"></img>
-        <p>Director: ${data.Director}</p>
-        <p>Plot: ${data.Plot}</p>
-        <button class="absolute top-0 right-0" onclick="saveMovie()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
+      <div class="flex gap-4 bg-gray-200 rounded-md py-10 px-4">
+        <div>
+          <img src="${data.Poster}" id="movieposter" class="rounded-md"></img>
+        </div>
+        <div>
+          <h2 class="font-medium text-4xl">${data.Title}</h2>
+          <p>Year: ${data.Year}</p>
+          <p>Director: ${data.Director}</p>
+          <p>Plot: ${data.Plot}</p>
+        </div>
+        <button class="absolute top-5 right-5" onclick="saveMovie()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
       </svg></button>
@@ -60,3 +64,21 @@ function displayWatchList(watchList) {
     });
   }
 }
+let input = document.querySelector("#input");
+let form = document.querySelector("#form");
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if(input.value == ''){
+     // Mettre notre bordure de formulaire en rouge (red)
+
+
+  }
+  else {
+    // Mettre notre bordure de formulaire en gris (silver)
+    let movie = input.value;
+    searchMovie(movie);
+
+  }
+});

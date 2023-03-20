@@ -123,3 +123,10 @@ function checkWL() {
 
 
 checkWL();
+
+const loadWlBtn = document.getElementById("loadwlbtn");
+loadWlBtn.addEventListener("click", hideLoadWlBtn);
+
+function hideLoadWlBtn() {
+  loadWlBtn.style.display = "none";
+}

@@ -78,6 +78,8 @@ function displayWatchList(watchList) {
         </div>
       `;
     });
+    document.querySelector("#loadwlbtn").classList.remove('hidden');
+    document.querySelector("#loadwlbtn").classList.add('block');
   }
 }
 let input = document.querySelector("#input");
@@ -98,3 +100,8 @@ form.addEventListener('submit', (e) => {
 
   }
 });
+
+function loadWatchList() {
+  const watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+  displayWatchList(watchList);
+}

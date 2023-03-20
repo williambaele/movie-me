@@ -62,10 +62,10 @@ function displayWatchList(watchList) {
       <h2 class="text-white font-medium text-4xl">Watch List</h2>
     </div>
     <div class="w-full grid grid-cols-2 rounded-md bg-[#302c2c] mb-6">
-      <div class="hover:bg-[#474343] rounded-l-md flex justify-center text-white py-2 cursor-pointer">
+      <div class="hover:bg-[#E50914] rounded-l-md flex justify-center text-white py-2 cursor-pointer">
         <p>To watch</p>
       </div>
-      <div class="hover:bg-[#474343] rounded-r-md flex justify-center text-white py-2 cursor-pointer">
+      <div class="hover:bg-[#E50914] rounded-r-md flex justify-center text-white py-2 cursor-pointer">
         <p>Watched</p>
       </div>
     </div>

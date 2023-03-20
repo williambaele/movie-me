@@ -67,16 +67,18 @@ function displayWatchList(watchList) {
     `;
     watchList.forEach(movieData => {
       watchListDiv.innerHTML += `
-        <div class="bg-gray-200 p-2 rounded-md my-2 flex">
-          <div >
+        <div class="bg-gray-200 p-2 rounded-md my-2 flex gap-4">
             <img src="${movieData.Poster}" id="movieposter" class="rounded-md object-fill h-40">
-          </div>
-          <div>
-            <h3>${movieData.Title}</h3>
-            <p>Year: ${movieData.Year}</p>
-            <p>Director: ${movieData.Director}</p>
-            <p>Plot: ${movieData.Plot}</p>
-          </div>
+            <div class="grid gap-2">
+              <div class="flex justify-between">
+                <h3 class="text-2xl font-medium">${movieData.Title}</h3>
+                <p class="text-sm text-white bg-[#E50914] p-1 rounded-md flex justify-center items-center">${movieData.Ratings[0].Value}</p>
+              </div>
+              <p>Year: ${movieData.Year}</p>
+              <p>Actors: ${movieData.Actors}</p>
+              <p>Duration: ${movieData.Runtime}</p>
+              <p>Plot: ${movieData.Plot}</p>
+            </div>
         </div>
       `;
     });

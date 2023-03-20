@@ -16,6 +16,7 @@
         <input type="text" id="input" class="col-span-3 bg-white rounded-md py-1.5 pl-3" placeholder="Your next movie">
         <button type="button" id="searchbtn" class="col-span-1 bg-[#E50914] hover:bg-[#ea3a43] rounded-md font-medium text-white" onclick="searchMovie()">Search</button>
       </form>
+      <button onclick="loadWatchList()" class="text-white text-xs bg-[#302c2c] hover:bg-[#474343] my-2 py-1 w-1/2 rounded hidden" id="loadwlbtn">Load my watchlist</button>
       <p id="errormsg" class="text-red-400 text-sm mt-1 text-left"></p>
       <div class="w-full relative my-6" id="movieInfo">
         <button class="absolute top-0 right-0" onclick="saveMovie()">
@@ -29,7 +30,6 @@
         <div id="watchList"></div>
       </div>
     </div>
-    <button onclick="loadWatchList()" class="text-white absolute top-0 hidden right-0 left-0" id="loadwlbtn">Load Watchlist</button>
   </div>
   <script src="app.js"></script>
 </body>

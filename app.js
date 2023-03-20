@@ -78,8 +78,6 @@ function displayWatchList(watchList) {
         </div>
       `;
     });
-    document.querySelector("#loadwlbtn").classList.remove('hidden');
-    document.querySelector("#loadwlbtn").classList.add('block');
   }
 }
 let input = document.querySelector("#input");
@@ -105,3 +103,15 @@ function loadWatchList() {
   const watchList = JSON.parse(localStorage.getItem("watchList")) || [];
   displayWatchList(watchList);
 }
+
+
+function checkWL() {
+  const watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+  if (watchList.length > 0){
+    document.querySelector("#loadwlbtn").classList.remove('hidden');
+    document.querySelector("#loadwlbtn").classList.add('block');
+  }
+}
+
+
+checkWL();

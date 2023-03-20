@@ -14,12 +14,21 @@ function searchMovie() {
           <img src="${data.Poster}" id="movieposter" class="rounded-md"></img>
         </div>
         <div>
-          <h2 class="font-medium text-4xl">${data.Title}</h2>
-          <p>Year: ${data.Year}</p>
-          <p>Director: ${data.Director}</p>
-          <p>Plot: ${data.Plot}</p>
+          <div class="flex justify-between">
+            <h2 class="font-medium text-4xl">${data.Title}</h2>
+            <p class="text-lg text-white bg-[#E50914] p-1 rounded-md flex justify-center items-center">${data.Ratings[0].Value}</p>
+          </div>
+          <div class="grid gap-4 mt-6">
+            <p>Year: ${data.Year}</p>
+            <p>Released: ${data.Released}</p>
+            <p>Length: ${data.Runtime}</p>
+            <p>Awards: ${data.Awards}</p>
+            <p>Director: ${data.Director}</p>
+            <p>Actors: ${data.Actors}</p>
+            <p>Plot: ${data.Plot}</p>
+          </div>
         </div>
-        <button class="absolute top-5 right-5" onclick="saveMovie()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
+        <button class="absolute bottom-8 right-8" onclick="saveMovie()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
       </svg></button>
@@ -51,10 +60,14 @@ function displayWatchList(watchList) {
   const watchListDiv = document.getElementById("watchList");
   watchListDiv.innerHTML = "";
   if (watchList.length > 0) {
-    watchListDiv.innerHTML += "<h2>Watch List</h2>";
+    watchListDiv.innerHTML += `
+    <div class="flex justify-center mt-10 mb-6">
+      <h2 class="text-white font-medium text-4xl">Watch List</h2>
+    </div>
+    `;
     watchList.forEach(movieData => {
       watchListDiv.innerHTML += `
-        <div>
+        <div class="bg-gray-200 p-2 rounded-md">
           <h3>${movieData.Title}</h3>
           <p>Year: ${movieData.Year}</p>
           <p>Director: ${movieData.Director}</p>

@@ -74,10 +74,10 @@ function displayWatchList(watchList) {
       watchListDiv.innerHTML += `
         <div class="bg-gray-200 p-2 rounded-md my-2 flex gap-4">
             <img src="${movieData.Poster}" id="movieposter" class="rounded-md object-fill h-40">
-            <div class="grid gap-2 w-full">
-              <div class="flex justify-between">
+            <div class="grid gap-2 w-full pr-4">
+              <div class="flex justify-between items-center">
                 <h3 class="text-2xl font-medium">${movieData.Title}</h3>
-                <p class="text-sm text-white bg-[#E50914] p-1 rounded-md flex justify-center items-center">${movieData.Ratings[0].Value}</p>
+                <input type="checkbox" id="seenmovie">
               </div>
               <p>Actors: ${movieData.Actors}</p>
               <p>Duration: ${movieData.Runtime}</p>

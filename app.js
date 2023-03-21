@@ -63,24 +63,45 @@ function displayWatchList(watchList, watchedList = []) {
     </div>
     <div class="w-full grid grid-cols-2 rounded-md mb-6">
       <div class="p-4">
-          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md">To Watch</h3>
-          <ul id="toWatchList" class="divide-y divide-gray-400">
+          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md hover:bg-[#E50914]">To Watch</h3>
+          <ul id="toWatchList">
             ${watchList.map(movie => `
-              <li class="flex my-2 justify-between items-center py-2 bg-red-200">
-                <span>${movie.Title}</span>
-                <label class="flex items-center">
-                  <input type="checkbox" class="mr-2" onclick="markAsWatched('${movie.imdbID}')">
-                  <span class="text-white">Watched</span>
-                </label>
+              <li class="flex my-2 items-center gap-2 justify-between py-2 bg-[#454141] px-2 rounded-md">
+                <div class="flex gap-5">
+                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
+                  <div class="grid gap-1">
+                    <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
+                    <div class="flex gap-4">
+                      <span class="text-md text-white">${movie.Runtime}</span>
+                      <span class="text-md text-white">${movie.Ratings[0].Value}</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="mr-2" onclick="markAsWatched('${movie.imdbID}')">
+                  </label>
+                </div>
               </li>
             `).join('')}
           </ul>
         </div>
         <div class="p-4">
-          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md">Watched</h3>
-          <ul id="watchedList" class="divide-y divide-gray-400">
+          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md hover:bg-[#E50914]">Watched</h3>
+          <ul id="watchedList">
             ${watchedList.map(movie => `
-              <li class="py-2">${movie.Title}</li>
+            <li class="flex my-2 items-center gap-2 justify-between py-2 bg-[#454141] px-2 rounded-md">
+            <div class="flex gap-5">
+              <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
+              <div class="grid gap-1">
+                <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
+                <div class="flex gap-4">
+                  <span class="text-md text-white">${movie.Runtime}</span>
+                  <span class="text-md text-white">${movie.Ratings[0].Value}</span>
+                </div>
+              </div>
+            </div>
+          </li>
             `).join('')}
           </ul>
         </div>
@@ -129,7 +150,9 @@ form.addEventListener('submit', (e) => {
 
 function loadWatchList() {
   const watchList = JSON.parse(localStorage.getItem("watchList")) || [];
-  displayWatchList(watchList);
+  const watchedList = JSON.parse(localStorage.getItem("watchedList")) || [];
+  displayWatchList(watchList, watchedList);
+
 }
 
 

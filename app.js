@@ -61,12 +61,12 @@ function displayWatchList(watchList, watchedList = []) {
     <div class="flex justify-center mt-10 mb-6">
       <h2 class="text-white font-medium text-4xl">Watch List</h2>
     </div>
-    <div class="w-full grid grid-cols-2 rounded-md bg-[#302c2c] mb-6">
-      <div class="hover:bg-[#302c2c] p-4">
-          <h3 class="text-white font-medium text-lg mb-4">To Watch</h3>
+    <div class="w-full grid grid-cols-2 rounded-md mb-6">
+      <div class="p-4">
+          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md">To Watch</h3>
           <ul id="toWatchList" class="divide-y divide-gray-400">
             ${watchList.map(movie => `
-              <li class="flex my-2 justify-between items-center py-2">
+              <li class="flex my-2 justify-between items-center py-2 bg-red-200">
                 <span>${movie.Title}</span>
                 <label class="flex items-center">
                   <input type="checkbox" class="mr-2" onclick="markAsWatched('${movie.imdbID}')">
@@ -76,8 +76,8 @@ function displayWatchList(watchList, watchedList = []) {
             `).join('')}
           </ul>
         </div>
-        <div class="hover:bg-[#302c2c] p-4">
-          <h3 class="text-white font-medium text-lg mb-4">Watched</h3>
+        <div class="p-4">
+          <h3 class="text-white font-medium text-lg mb-4 bg-[#302c2c] py-2 rounded-md">Watched</h3>
           <ul id="watchedList" class="divide-y divide-gray-400">
             ${watchedList.map(movie => `
               <li class="py-2">${movie.Title}</li>

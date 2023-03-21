@@ -91,17 +91,27 @@ function displayWatchList(watchList, watchedList = []) {
           <ul id="watchedList">
             ${watchedList.map(movie => `
             <li class="flex my-2 items-center gap-2 justify-between py-2 bg-[#454141] px-2 rounded-md">
-            <div class="flex gap-5">
-              <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
-              <div class="grid gap-1">
-                <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
-                <div class="flex gap-4">
-                  <span class="text-md text-white">${movie.Runtime}</span>
-                  <span class="text-md text-white">${movie.Ratings[0].Value}</span>
+                <div class="flex gap-5">
+                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
+                  <div class="grid gap-1">
+                    <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
+                    <div class="flex gap-4">
+                      <span class="text-md text-white">${movie.Runtime}</span>
+                      <span class="text-md text-white">${movie.Ratings[0].Value}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
+                <div>
+                  <label class="flex items-center">
+                    <a onclick="deleteWatchedMovie('${movie.imdbID}')" id="trashmovie" class="cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#E50914" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    </a>
+                  </label>
+                </div>
+              </li>
             `).join('')}
           </ul>
         </div>
@@ -172,4 +182,11 @@ loadWlBtn.addEventListener("click", hideLoadWlBtn);
 
 function hideLoadWlBtn() {
   loadWlBtn.style.display = "none";
+}
+
+
+function deleteWatchedMovie() {
+  trashBtn = document.querySelector("#trashmovie");
+  console.log("hi");
+  const watchedList = JSON.parse(localStorage.getItem("watchedList")) || [];
 }

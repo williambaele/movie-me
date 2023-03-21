@@ -53,41 +53,61 @@ function saveMovie() {
   }
 }
 
-function displayWatchList(watchList) {
+function displayWatchList(watchList, watchedList = []) {
   const watchListDiv = document.getElementById("watchList");
   watchListDiv.innerHTML = "";
-  if (watchList.length > 0) {
+  if (watchList.length > 0 || watchedList.length > 0) {
     watchListDiv.innerHTML += `
     <div class="flex justify-center mt-10 mb-6">
       <h2 class="text-white font-medium text-4xl">Watch List</h2>
     </div>
     <div class="w-full grid grid-cols-2 rounded-md bg-[#302c2c] mb-6">
-      <div class="hover:bg-[#E50914] rounded-l-md flex justify-center text-white py-2 cursor-pointer">
-        <p>To watch</p>
-      </div>
-      <div class="hover:bg-[#E50914] rounded-r-md flex justify-center text-white py-2 cursor-pointer">
-        <p>Watched</p>
-      </div>
-    </div>
-    `;
-    watchList.forEach(movieData => {
-      watchListDiv.innerHTML += `
-        <div class="bg-gray-200 p-2 rounded-md my-2 flex gap-4">
-            <img src="${movieData.Poster}" id="movieposter" class="rounded-md object-fill h-40">
-            <div class="grid gap-2 w-full pr-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-2xl font-medium">${movieData.Title}</h3>
-                <input type="checkbox" id="seenmovie">
-              </div>
-              <p>Actors: ${movieData.Actors}</p>
-              <p>Duration: ${movieData.Runtime}</p>
-              <p>Plot: ${movieData.Plot}</p>
-            </div>
+      <div class="hover:bg-[#302c2c] p-4">
+          <h3 class="text-white font-medium text-lg mb-4">To Watch</h3>
+          <ul id="toWatchList" class="divide-y divide-gray-400">
+            ${watchList.map(movie => `
+              <li class="flex my-2 justify-between items-center py-2">
+                <span>${movie.Title}</span>
+                <label class="flex items-center">
+                  <input type="checkbox" class="mr-2" onclick="markAsWatched('${movie.imdbID}')">
+                  <span class="text-white">Watched</span>
+                </label>
+              </li>
+            `).join('')}
+          </ul>
         </div>
-      `;
-    });
+        <div class="hover:bg-[#302c2c] p-4">
+          <h3 class="text-white font-medium text-lg mb-4">Watched</h3>
+          <ul id="watchedList" class="divide-y divide-gray-400">
+            ${watchedList.map(movie => `
+              <li class="py-2">${movie.Title}</li>
+            `).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
   }
 }
+
+function markAsWatched(imdbID) {
+  // Retrieve the existing watch list from local storage
+  let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+  // Find the selected movie in the watch list
+  const movieIndex = watchList.findIndex(movie => movie.imdbID === imdbID);
+  if (movieIndex !== -1) {
+    // Remove the movie from the watch list and add it to the watched list
+    const [movie] = watchList.splice(movieIndex, 1);
+    const watchedList = JSON.parse(localStorage.getItem("watchedList")) || [];
+    watchedList.push(movie);
+    // Save the updated watch lists to local storage
+    localStorage.setItem("watchList", JSON.stringify(watchList));
+    localStorage.setItem("watchedList", JSON.stringify(watchedList));
+    console.log("Movie marked as watched");
+    // Update the display of the watch lists
+    displayWatchList(watchList, watchedList);
+  }
+}
+
 let input = document.querySelector("#input");
 let form = document.querySelector("#form");
 

@@ -68,7 +68,7 @@ function displayWatchList(watchList, watchedList = []) {
             ${watchList.map(movie => `
               <li class="flex my-2 items-center gap-2 justify-between py-2 bg-[#454141] px-2 rounded-md">
                 <div class="flex gap-5">
-                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
+                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20 hidden md:block"></img>
                   <div class="grid gap-1">
                     <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
                     <div class="flex gap-4">
@@ -92,7 +92,7 @@ function displayWatchList(watchList, watchedList = []) {
             ${watchedList.map(movie => `
             <li class="flex my-2 items-center gap-2 justify-between py-2 bg-[#454141] px-2 rounded-md">
                 <div class="flex gap-5">
-                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20"></img>
+                  <img src="${movie.Poster}" id="movieposter" class="rounded-md h-20 hidden md:block"></img>
                   <div class="grid gap-1">
                     <h2 class="font-medium text-xl text-white text-left">${movie.Title}</h2>
                     <div class="flex gap-4">
